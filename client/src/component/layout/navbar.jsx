@@ -27,7 +27,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { Link as NavLink } from "react-router-dom";
-
+// react node lama dev booking app     overreacted   techinfo yt
 const Navbar = () => {
   const token = "d";
   const { isOpen, onToggle } = useDisclosure();
