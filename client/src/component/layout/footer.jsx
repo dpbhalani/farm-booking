@@ -6,12 +6,9 @@ import {
   Stack,
   Text,
   Input,
-  //   IconButton,
   useColorModeValue,
 } from "@chakra-ui/react";
-//   import { ReactNode } from 'react';
-// import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-// import { BiMailSend } from "react-icons/bi";
+import { Link as NavLink } from "react-router-dom";
 
 const Logo = (props) => {
   return (
@@ -44,9 +41,6 @@ const ListHeader = ({ children }) => {
 const Footer = () => {
   return (
     <Box
-      //   as="footer"
-      //   mt="auto"
-      //   p="4"
       bg={useColorModeValue("gray.200", "gray.700")}
       color={useColorModeValue("gray.700", "gray.200")}
     >
@@ -57,41 +51,64 @@ const Footer = () => {
         >
           <Stack spacing={6}>
             <Box>
-              <Logo color={useColorModeValue("gray.700", "white")} />
+              <Stack>
+                <ListHeader> </ListHeader>
+                <ListHeader> </ListHeader>
+                <ListHeader> </ListHeader>
+                <ListHeader> </ListHeader>
+                <ListHeader></ListHeader>
+                <ListHeader></ListHeader>
+                <ListHeader></ListHeader>
+                {/* <Logo color={useColorModeValue("gray.700", "white")} /> */}
+              </Stack>
             </Box>
-            <Text fontSize={"sm"}>
-              © 2022 Chakra Templates. All rights reserved
-            </Text>
+            <Text fontSize={"lg"}>© 2023 FarmVilla. All rights reserved</Text>
             <Stack direction={"row"} spacing={6}></Stack>
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Company</ListHeader>
-            <Link href={"#"}>About us</Link>
-            <Link href={"#"}>Blog</Link>
-            <Link href={"#"}>Contact us</Link>
-            <Link href={"#"}>Pricing</Link>
-            <Link href={"#"}>Testimonials</Link>
+
+            <Link as={NavLink} to="/">
+              Home
+            </Link>
+            <Link as={NavLink} to="/about-us">
+              About us
+            </Link>
+            <Link as={NavLink} to="/contact-us">
+              Contact us
+            </Link>
+            <Link as={NavLink} to="/pricing">
+              Pricing
+            </Link>
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Support</ListHeader>
-            <Link href={"#"}>Help Center</Link>
-            <Link href={"#"}>Terms of Service</Link>
-            <Link href={"#"}>Legal</Link>
-            <Link href={"#"}>Privacy Policy</Link>
-            <Link href={"#"}>Satus</Link>
+            <Link as={NavLink} to="">
+              Help Center
+            </Link>
+            <Link as={NavLink} to="">
+              Terms of Service
+            </Link>
+            <Link as={NavLink} to="">
+              Legal
+            </Link>
+            <Link as={NavLink} to="">
+              Privacy Policy
+            </Link>
+            <Link as={NavLink} to="">
+              Satus
+            </Link>
           </Stack>
           <Stack align={"flex-start"}>
-            <ListHeader>Stay up to date</ListHeader>
-            <Stack direction={"row"}>
-              <Input
-                placeholder={"Your email address"}
-                bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
-                border={0}
-                _focus={{
-                  bg: "whiteAlpha.300",
-                }}
-              />
-            </Stack>
+            <ListHeader> </ListHeader>
+            <ListHeader> </ListHeader>
+            <ListHeader> </ListHeader>
+            <ListHeader> </ListHeader>
+            <ListHeader></ListHeader>
+            <ListHeader></ListHeader>
+            <ListHeader></ListHeader>
+            <ListHeader>Contact:- +91 9624127984</ListHeader>
+            <ListHeader>Email:- farmvillhub@gmail.com</ListHeader>
           </Stack>
         </SimpleGrid>
       </Container>

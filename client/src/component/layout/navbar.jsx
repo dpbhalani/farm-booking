@@ -14,6 +14,11 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Avatar,
+  MenuItem,
+  MenuList,
+  MenuButton,
+  Menu,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -24,6 +29,7 @@ import {
 import { Link as NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const token = "d";
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -59,7 +65,7 @@ const Navbar = () => {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            Logo
+            FarmHub
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -73,30 +79,58 @@ const Navbar = () => {
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={NavLink}
-            to="login"
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-          >
-            Sign In
-          </Button>
-          <Button
-            as={NavLink}
-            to="register"
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"gray.900"}
-            href={"#"}
-            _hover={{
-              bg: "gray.500",
-            }}
-          >
-            Sign Up
-          </Button>
+          {token === "" ? (
+            <Button
+              as={NavLink}
+              to="login"
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+            >
+              Sign In
+            </Button>
+          ) : (
+            <Flex alignItems={"center"}>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
+                  minW={0}
+                >
+                  <Avatar size={"md"} src={"https://bit.ly/sage-adebayo"} />
+                </MenuButton>
+                <MenuList>
+                  <MenuItem as={NavLink} to="/login/profile">
+                    Profile
+                  </MenuItem>
+                  <MenuItem>Log-Out</MenuItem>
+                </MenuList>
+              </Menu>
+            </Flex>
+          )}
+          ({" "}
+          {token === "" ? (
+            <Button
+              as={NavLink}
+              to="register"
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"gray.800"}
+              href={"#"}
+              _hover={{
+                bg: "gray",
+              }}
+            >
+              Sign Up
+            </Button>
+          ) : (
+            ""
+          )}
+          )
         </Stack>
       </Flex>
 
@@ -121,6 +155,11 @@ const DesktopNav = () => {
               <Link
                 p={2}
                 as={NavLink}
+                to={`/${
+                  navItem.label.toLowerCase() === "home"
+                    ? ""
+                    : navItem.label.toLowerCase()
+                }`}
                 // href={navItem.href ?? "#"}
                 fontSize={"sm"}
                 fontWeight={500}
@@ -160,7 +199,7 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
     <Link
-      href={href}
+      href={"/"}
       role={"group"}
       display={"block"}
       p={2}
@@ -215,7 +254,9 @@ const MobileNavItem = ({ label, children, href }) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
+        // as={Link}
+        as={NavLink}
+        to={`/${label.toLowerCase() === "home" ? "" : label.toLowerCase()}`}
         href={href ?? "#"}
         justify={"space-between"}
         align={"center"}
@@ -264,11 +305,12 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: "Home",
+    // as: <NavLink />,
+    // to: "/",
     children: [
       {
         label: "Explore Design Work",
         subLabel: "Trending Design to inspire you",
-        // href: "#",
       },
       {
         label: "New & Noteworthy",
@@ -278,15 +320,15 @@ const NAV_ITEMS = [
     ],
   },
   {
-    label: "Find Farm",
+    label: "Sort-Farm",
     children: [
       {
-        label: "Job Board",
+        label: "Sort-By-Price",
         subLabel: "Find your dream design job",
-        href: "#",
+        // href: "#",
       },
       {
-        label: "Freelance Projects",
+        label: "Sort-By-Rating",
         subLabel: "An exclusive list for contract work",
         href: "#",
       },
@@ -297,7 +339,7 @@ const NAV_ITEMS = [
     href: "#",
   },
   {
-    label: "Rating",
+    label: "Contact-Us",
     href: "#",
   },
 ];

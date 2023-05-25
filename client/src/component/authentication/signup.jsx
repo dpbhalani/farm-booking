@@ -14,18 +14,22 @@ import {
   useColorModeValue,
   Link,
 } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link as NavLink } from "react-router-dom";
 
 const SingUp = () => {
+  const toast = useToast();
   const INTIAL_STATE = {
     firstname: "",
     lastname: "",
     email: "",
     password: "",
+    confirmPassword: "",
   };
   const [showPassword, setShowPassword] = useState(false);
+  const [conShowPassword, setConShowPassword] = useState(false);
   const [formdata, setFormdata] = useState(INTIAL_STATE);
 
   const chageHandler = (e) => {
@@ -35,8 +39,25 @@ const SingUp = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(formdata);
-    setFormdata(INTIAL_STATE);
+    if (formdata.password === formdata.confirmPassword) {
+      console.log(formdata);
+      toast({
+        title: "User registration successfully done!",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      setFormdata(INTIAL_STATE);
+    } else {
+      toast({
+        title: "Passwords do not match",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    }
   };
 
   return (
@@ -118,6 +139,29 @@ const SingUp = () => {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
+              <FormControl id="confirmPassword" isRequired>
+                <FormLabel>Confirm-Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    type={conShowPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={formdata.confirmPassword}
+                    onChange={chageHandler}
+                  />
+                  <InputRightElement h={"full"}>
+                    <Button
+                      variant={"ghost"}
+                      onClick={() =>
+                        setConShowPassword(
+                          (conShowPassword) => !conShowPassword
+                        )
+                      }
+                    >
+                      {conShowPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+              </FormControl>
               <Stack spacing={10} pt={2}>
                 <Button
                   type="submit"
@@ -126,7 +170,7 @@ const SingUp = () => {
                   bg={"gray.800"}
                   color={"white"}
                   _hover={{
-                    bg: "gray.500",
+                    bg: "gray",
                   }}
                 >
                   Sign up
