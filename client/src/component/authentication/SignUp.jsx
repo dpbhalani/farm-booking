@@ -18,8 +18,12 @@ import { useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link as NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/Authcontext";
 
 const SingUp = () => {
+  const navigate = useNavigate();
+  const { createUser } = UserAuth();
   const toast = useToast();
   const INTIAL_STATE = {
     firstname: "",
@@ -37,22 +41,33 @@ const SingUp = () => {
     setFormdata({ ...formdata, [name]: value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    if (formdata.password === formdata.confirmPassword) {
-      console.log(formdata);
+    try {
+      if (formdata.password === formdata.confirmPassword) {
+        await createUser(formdata.email, formdata.password);
+        toast({
+          title: "User registration successfully done!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+        navigate("/");
+        setFormdata(INTIAL_STATE);
+      } else {
+        toast({
+          title: "Passwords do not match",
+          status: "warning",
+          duration: 3000,
+          isClosable: true,
+          position: "top",
+        });
+      }
+    } catch (err) {
       toast({
-        title: "User registration successfully done!",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-        position: "top",
-      });
-      setFormdata(INTIAL_STATE);
-    } else {
-      toast({
-        title: "Passwords do not match",
-        status: "warning",
+        title: err.message,
+        status: "error",
         duration: 3000,
         isClosable: true,
         position: "top",
@@ -86,7 +101,7 @@ const SingUp = () => {
             <form onSubmit={submitHandler}>
               <HStack>
                 <Box>
-                  <FormControl id="firstName" isRequired>
+                  <FormControl id="firstName">
                     <FormLabel>First Name</FormLabel>
                     <Input
                       type="text"
@@ -97,7 +112,7 @@ const SingUp = () => {
                   </FormControl>
                 </Box>
                 <Box>
-                  <FormControl id="lastName" isRequired>
+                  <FormControl id="lastName">
                     <FormLabel>Last Name</FormLabel>
                     <Input
                       type="text"
@@ -108,7 +123,7 @@ const SingUp = () => {
                   </FormControl>
                 </Box>
               </HStack>
-              <FormControl id="email">
+              <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
                 <Input
                   type="email"

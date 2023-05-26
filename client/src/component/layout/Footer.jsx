@@ -5,7 +5,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  Input,
+  // Input,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link as NavLink } from "react-router-dom";
@@ -59,7 +59,7 @@ const Footer = () => {
                 <ListHeader></ListHeader>
                 <ListHeader></ListHeader>
                 <ListHeader></ListHeader>
-                {/* <Logo color={useColorModeValue("gray.700", "white")} /> */}
+                <Logo color={useColorModeValue("gray.700", "white")} />
               </Stack>
             </Box>
             <Text fontSize={"lg"}>© 2023 FarmVilla. All rights reserved</Text>

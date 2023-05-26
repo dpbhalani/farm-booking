@@ -1,14 +1,15 @@
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Navbar from "./component/layout/navbar";
-import Footer from "./component/layout/footer";
-import Home from "./component/home/home";
-import Login from "./component/authentication/login";
-import SingUp from "./component/authentication/signup";
-import ForgotPassword from "./component/authentication/resetPassword";
-import Contact from "./component/authentication/contactUs";
+import Navbar from "./component/layout/Navbar";
+import Footer from "./component/layout/Footer";
+import Home from "./component/homePage/Home";
+import Login from "./component/authentication/Login";
+import SingUp from "./component/authentication/SignUp";
+import ForgotPassword from "./component/authentication/ResetPassword";
+import Contact from "./component/authentication/ContactUs";
 import NotFound from "./component/page-not-found/404";
-import UserProfile from "./component/profile/profile";
+import UserProfile from "./component/profile/Profile";
+import Protect from "./protectRoute/Protect";
 // import FarmView from "./component/farm-ui/farmview";
 
 function App() {
@@ -21,7 +22,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SingUp />} />
         <Route path="/login/forgot-pass" element={<ForgotPassword />} />
-        <Route path="/contact-us" element={<Contact />} />
+        <Route
+          path="/contact-us"
+          element={
+            <Protect>
+              <Contact />
+            </Protect>
+          }
+        />
         <Route path="/login/profile" element={<UserProfile />} />
         {/* <Route path="/farmiew" element={<FarmView />} /> */}
         <Route path="*" element={<NotFound />} />

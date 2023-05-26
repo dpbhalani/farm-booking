@@ -13,9 +13,14 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Link as NavLink } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
+import { Link as NavLink, useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/Authcontext";
 
 const Login = () => {
+  const { signIn } = UserAuth();
+  const navigate = useNavigate();
+  const toast = useToast();
   const INTIAL_STATE = {
     email: "",
     password: "",
@@ -27,11 +32,30 @@ const Login = () => {
     setFormdata({ ...formdata, [name]: value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formdata);
-    setFormdata(INTIAL_STATE);
+    try {
+      await signIn(formdata.email, formdata.password);
+      toast({
+        title: "Login successfully done!",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      navigate("/");
+      setFormdata(INTIAL_STATE);
+    } catch (err) {
+      toast({
+        title: err.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    }
   };
+
   return (
     <Flex
       minH={"100vh"}

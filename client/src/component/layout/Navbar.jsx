@@ -19,18 +19,49 @@ import {
   MenuList,
   MenuButton,
   Menu,
+  useColorMode,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  MoonIcon,
+  SunIcon,
 } from "@chakra-ui/icons";
-import { Link as NavLink } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
+import { Link as NavLink, useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/Authcontext";
 // react node lama dev booking app     overreacted   techinfo yt
+
 const Navbar = () => {
-  const token = "d";
+  const { user, logout } = UserAuth();
+  const navigate = useNavigate();
+  const toast = useToast();
+  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
+
+  const logouthandler = async () => {
+    try {
+      await logout();
+      toast({
+        title: "User Loggedout successfully done!",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      navigate("/login");
+    } catch (err) {
+      toast({
+        title: err.message,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    }
+  };
 
   return (
     <Box>
@@ -79,7 +110,11 @@ const Navbar = () => {
           direction={"row"}
           spacing={6}
         >
-          {token === "" ? (
+          {" "}
+          <Button onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          </Button>
+          {user === null ? (
             <Button
               as={NavLink}
               to="login"
@@ -105,13 +140,13 @@ const Navbar = () => {
                   <MenuItem as={NavLink} to="/login/profile">
                     Profile
                   </MenuItem>
-                  <MenuItem>Log-Out</MenuItem>
+                  <MenuItem onClick={logouthandler}>Log-Out</MenuItem>
                 </MenuList>
               </Menu>
             </Flex>
           )}
           ({" "}
-          {token === "" ? (
+          {user === null ? (
             <Button
               as={NavLink}
               to="register"

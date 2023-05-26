@@ -9,8 +9,14 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { UserAuth } from "../../context/Authcontext";
+import { useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
+  const { resetPassword } = UserAuth();
+  const navigate = useNavigate();
+  const toast = useToast();
   const INTIAL_STATE = {
     email: "",
   };
@@ -21,11 +27,31 @@ const ForgotPassword = () => {
     setFormdata({ ...formdata, [name]: value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formdata);
-    setFormdata(INTIAL_STATE);
+    try {
+      await resetPassword(formdata.email);
+      toast({
+        title: "Reset Password mail sended!",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      navigate("/login");
+      setFormdata(INTIAL_STATE);
+    } catch (err) {
+      console.log(err.message);
+      toast({
+        title: err.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+    }
   };
+
   return (
     <Flex
       minH={"100vh"}
@@ -57,10 +83,10 @@ const ForgotPassword = () => {
             <Input
               placeholder="your-email@example.com"
               name="email"
+              type="email"
               onChange={chageHandler}
               value={formdata.email}
               _placeholder={{ color: "gray.500" }}
-              type="email"
             />
           </FormControl>
           <Stack spacing={6}>
