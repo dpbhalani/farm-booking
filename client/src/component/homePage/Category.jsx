@@ -11,6 +11,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
+import { Link as NavLink } from "react-router-dom";
 
 const Category = () => (
   <Box
@@ -81,7 +82,12 @@ const Category = () => (
             </Heading>
           </Stack>
           <HStack spacing="3">
-            <Link fontWeight="bold" fontSize="lg">
+            <Link
+              fontWeight="bold"
+              fontSize="lg"
+              as={NavLink}
+              to={"/explore-farm"}
+            >
               Explore now
             </Link>
             <Icon as={FaArrowRight} />

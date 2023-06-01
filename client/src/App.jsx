@@ -10,6 +10,9 @@ import Contact from "./component/authentication/ContactUs";
 import NotFound from "./component/page-not-found/404";
 import UserProfile from "./component/profile/Profile";
 import Protect from "./protectRoute/Protect";
+import Pricing from "./component/pricing/price";
+import FarmViewApp from "./component/productGrid/App";
+import CartApp from "./component/Cart/App";
 // import FarmView from "./component/farm-ui/farmview";
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SingUp />} />
         <Route path="/login/forgot-pass" element={<ForgotPassword />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/explore-farm" element={<FarmViewApp />} />
+        <Route path="/cart" element={<CartApp />} />
         <Route
           path="/contact-us"
           element={
@@ -31,7 +37,6 @@ function App() {
           }
         />
         <Route path="/login/profile" element={<UserProfile />} />
-        {/* <Route path="/farmiew" element={<FarmView />} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       {location.pathname !== "/login" &&

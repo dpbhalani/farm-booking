@@ -11,6 +11,7 @@ import {
   IconButton,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { Link as NavLink } from "react-router-dom";
 
 const StarterPage = () => {
   return (
@@ -59,6 +60,8 @@ const StarterPage = () => {
             <Button
               rounded={"full"}
               size={"lg"}
+              as={NavLink}
+              to={"/pricing"}
               fontWeight={"normal"}
               px={6}
               colorScheme={"white"}
