@@ -11,7 +11,7 @@ import NotFound from "./component/page-not-found/404";
 import UserProfile from "./component/profile/Profile";
 import Protect from "./protectRoute/Protect";
 import Pricing from "./component/pricing/price";
-import FarmViewApp from "./component/productGrid/App";
+import FarmViewApp from "./component/dataShowCard/App";
 import CartApp from "./component/Cart/App";
 // import FarmView from "./component/farm-ui/farmview";
 

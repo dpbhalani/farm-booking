@@ -1,0 +1,1 @@
+{"version":3,"file":"appCatchasync.js","sourceRoot":"","sources":["../../src/utils/appCatchasync.ts"],"names":[],"mappings":"AAEA,MAAM,UAAU,GAAG,CACjB,EAAqE,EACrE,EAAE;IACF,OAAO,CAAC,GAAY,EAAE,GAAa,EAAE,IAAkB,EAAE,EAAE;QACzD,EAAE,CAAC,GAAG,EAAE,GAAG,EAAE,IAAI,CAAC,CAAC,KAAK,CAAC,IAAI,CAAC,CAAC;IACjC,CAAC,CAAC;AACJ,CAAC,CAAC;AAEF,eAAe,UAAU,CAAC"}

@@ -3,7 +3,7 @@ import UserProfile from "../profile/Profile";
 import Contact from "../authentication/ContactUs";
 import StarterPage from "./StartPage";
 import Category from "./Category";
-import FarmViewApp from "../productGrid/App";
+import FarmViewApp from "../dataShowCard/App";
 
 const Home = () => {
   return (
