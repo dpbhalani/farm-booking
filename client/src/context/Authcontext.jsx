@@ -22,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const resetPassword = (email) => {
-    return sendPasswordResetEmail(auth,email);
+    return sendPasswordResetEmail(auth, email);
   };
 
   const logout = () => {
@@ -33,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUSer) => {
       setUser(currentUSer);
     });
-      
+
     return () => {
       unsubscribe();
     };

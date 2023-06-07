@@ -231,7 +231,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }) => {
+const DesktopSubNav = ({ label, subLabel }) => {
   return (
     <Link
       href={"/"}
@@ -289,7 +289,6 @@ const MobileNavItem = ({ label, children, href }) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        // as={Link}
         as={NavLink}
         to={`/${label.toLowerCase() === "home" ? "" : label.toLowerCase()}`}
         href={href ?? "#"}
@@ -360,7 +359,6 @@ const NAV_ITEMS = [
       {
         label: "Sort-By-Price",
         subLabel: "Find your dream design job",
-        // href: "#",
       },
       {
         label: "Sort-By-Rating",

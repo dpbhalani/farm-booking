@@ -10,6 +10,7 @@ import {
 import { CartItem } from "./CartItem";
 import { CartOrderSummary } from "./CartOrderSummary";
 import { cartData } from "./_data";
+import { Link as NavLink } from "react-router-dom";
 
 const CartApp = () => (
   <Box
@@ -64,7 +65,13 @@ const CartApp = () => (
         <CartOrderSummary />
         <HStack mt="6" fontWeight="semibold">
           <p>or</p>
-          <Link color={mode("gray.500", "gray.200")}>Continue shopping</Link>
+          <Link
+            color={mode("gray.500", "gray.200")}
+            as={NavLink}
+            to={"/explore-farm"}
+          >
+            Continue shopping
+          </Link>
         </HStack>
       </Flex>
     </Stack>

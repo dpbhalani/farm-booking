@@ -6,20 +6,22 @@ import {
   Stack,
   Text,
   useColorModeValue as mode,
-} from '@chakra-ui/react'
-import { FaArrowRight } from 'react-icons/fa'
-import { formatPrice } from './PriceTag'
+} from "@chakra-ui/react";
+import { FaArrowRight } from "react-icons/fa";
+import { formatPrice } from "./PriceTag";
+import { Link as NavLink } from "react-router-dom";
+
 const OrderSummaryItem = (props) => {
-  const { label, value, children } = props
+  const { label, value, children } = props;
   return (
     <Flex justify="space-between" fontSize="sm">
-      <Text fontWeight="medium" color={mode('gray.600', 'gray.400')}>
+      <Text fontWeight="medium" color={mode("gray.600", "gray.400")}>
         {label}
       </Text>
       {value ? <Text fontWeight="medium">{value}</Text> : children}
     </Flex>
-  )
-}
+  );
+};
 
 export const CartOrderSummary = () => {
   return (
@@ -47,9 +49,16 @@ export const CartOrderSummary = () => {
           </Text>
         </Flex>
       </Stack>
-      <Button colorScheme="gray" size="lg" fontSize="md" rightIcon={<FaArrowRight />}>
+      <Button
+        colorScheme="gray"
+        size="lg"
+        fontSize="md"
+        as={NavLink}
+        to={"/payment"}
+        rightIcon={<FaArrowRight />}
+      >
         Checkout
       </Button>
     </Stack>
-  )
-}
+  );
+};
