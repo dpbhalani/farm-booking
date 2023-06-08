@@ -13,6 +13,8 @@ import Protect from "./protectRoute/Protect";
 import Pricing from "./component/pricing/price";
 import FarmViewApp from "./component/dataShowCard/App";
 import CartApp from "./component/Cart/App";
+import ProductDetail from "./component/productDetail/productDetail";
+import SiteDetailBar from "./component/siteDetail/siteDetailViewer";
 // import FarmView from "./component/farm-ui/farmview";
 
 function App() {
@@ -27,8 +29,10 @@ function App() {
         <Route path="/login/forgot-pass" element={<ForgotPassword />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/explore-farm" element={<FarmViewApp />} />
+        <Route path="/product-detail" element={<ProductDetail />} />
         <Route path="/cart" element={<CartApp />} />
         <Route path="/payment" element={<Home />} />
+        <Route path="/site-detail" element={<SiteDetailBar />} />
         <Route
           path="/contact-us"
           element={

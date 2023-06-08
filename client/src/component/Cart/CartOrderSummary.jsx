@@ -10,7 +10,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalCloseButton,
   ModalBody,
   ModalFooter,
@@ -21,8 +20,8 @@ import {
 import { useDisclosure } from "@chakra-ui/react";
 import { FaArrowRight } from "react-icons/fa";
 import { formatPrice } from "./PriceTag";
+import { Link as NavLink } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-import { Link as NavLink, useNavigate } from "react-router-dom";
 
 const OrderSummaryItem = (props) => {
   const { label, value, children } = props;
@@ -37,14 +36,12 @@ const OrderSummaryItem = (props) => {
 };
 
 function BasicUsage() {
+  const toast = useToast();
   const INTIAL_STATE = {
-    coupen: "",
+    coupon: "",
   };
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [formdata, setFormdata] = React.useState(INTIAL_STATE);
-
-  const navigate = useNavigate();
-  const toast = useToast();
 
   const chageHandler = (e) => {
     const { name, value } = e.target;
@@ -56,8 +53,22 @@ function BasicUsage() {
     try {
       onClose();
       setFormdata(INTIAL_STATE);
+      toast({
+        title: `Your Coupon ${formdata.coupon} is applied successfully!!`,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
     } catch (err) {
-      console.log(err.message);
+      onClose();
+      toast({
+        title: err.message,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        position: "top-right",
+      });
     }
   };
 
@@ -72,7 +83,6 @@ function BasicUsage() {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Stack
@@ -86,22 +96,22 @@ function BasicUsage() {
               my={12}
             >
               <Heading lineHeight={1.1} fontSize={{ base: "2xl", md: "3xl" }}>
-                Apply Your Coupen Here!!
+                Apply Your Coupon Here!!
               </Heading>
               <Text
                 fontSize={{ base: "sm", sm: "md" }}
                 color={useColorModeValue("gray.800", "gray.400")}
               >
-                You&apos;ll get an email with a coupen status
+                You&apos;ll get an email with a coupon status
               </Text>
               <form onSubmit={submitHandler}>
-                <FormControl id="coupen">
+                <FormControl id="coupon">
                   <Input
                     placeholder="A8D5GkDRbcS48dFG"
-                    name="coupen"
+                    name="coupon"
                     type="text"
                     onChange={chageHandler}
-                    value={formdata.coupen}
+                    value={formdata.coupon}
                     _placeholder={{ color: "gray.500" }}
                   />
                 </FormControl>
@@ -115,7 +125,7 @@ function BasicUsage() {
                     }}
                     style={{ marginTop: "3%" }}
                   >
-                    Apply Coupen
+                    Apply Coupon
                   </Button>
                 </Stack>
               </form>

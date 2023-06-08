@@ -64,8 +64,13 @@ export const ProductCard = (props) => {
         </HStack>
       </Stack>
       <Stack align="center">
-        <Button colorScheme="gray" width="full" as={NavLink} to={"/cart"}>
-          Add to cart
+        <Button
+          colorScheme="gray"
+          width="full"
+          as={NavLink}
+          to={"/product-detail"}
+        >
+          View Detail
         </Button>
       </Stack>
     </Stack>
