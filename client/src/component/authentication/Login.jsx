@@ -16,6 +16,7 @@ import {
 import { useToast } from "@chakra-ui/react";
 import { Link as NavLink, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/Authcontext";
+import ReCapcha from "./reCapcha";
 
 const Login = () => {
   const { signIn } = UserAuth();
@@ -97,6 +98,7 @@ const Login = () => {
                   onChange={chageHandler}
                 />
               </FormControl>
+              <ReCapcha isRequired />
               <Stack spacing={10}>
                 <Stack
                   direction={{ base: "column", sm: "row" }}

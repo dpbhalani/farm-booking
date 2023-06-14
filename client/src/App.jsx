@@ -15,6 +15,7 @@ import FarmViewApp from "./component/dataShowCard/App";
 import CartApp from "./component/Cart/App";
 import ProductDetail from "./component/productDetail/productDetail";
 import SiteDetailBar from "./component/siteDetail/siteDetailViewer";
+import FarmAddForm from "./component/admin/adminForm/farmAdd";
 // import FarmView from "./component/farm-ui/farmview";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/cart" element={<CartApp />} />
         <Route path="/payment" element={<Home />} />
         <Route path="/site-detail" element={<SiteDetailBar />} />
+        <Route path="/admin-farm-add" element={<FarmAddForm />} />
         <Route
           path="/contact-us"
           element={

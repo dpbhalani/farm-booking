@@ -21,7 +21,6 @@ const ForgotPassword = () => {
     email: "",
   };
   const [formdata, setFormdata] = useState(INTIAL_STATE);
-
   const chageHandler = (e) => {
     const { name, value } = e.target;
     setFormdata({ ...formdata, [name]: value });

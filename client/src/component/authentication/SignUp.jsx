@@ -20,6 +20,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link as NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/Authcontext";
+import ReCapcha from "./reCapcha";
 
 const SingUp = () => {
   const navigate = useNavigate();
@@ -178,6 +179,7 @@ const SingUp = () => {
                 </InputGroup>
               </FormControl>
               <Stack spacing={10} pt={2}>
+                <ReCapcha />
                 <Button
                   type="submit"
                   //   loadingText="Submitting"
