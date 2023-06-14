@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.chakra-modal__content .css-pv22qu {
+  width: fit-content;
+}
