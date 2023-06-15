@@ -1,19 +1,21 @@
-// in config.js
-// import { createChatBotMessage } from "react-chatbot-kit";
-import { createChatBotMessage, createCustomMessage } from "react-chatbot-kit";
-import CustomMessage from "./customMessage";
-import DogPicture from "./DogPicture";
+
+import { createChatBotMessage } from "react-chatbot-kit";
+import { DogPicture, LaptopPicture } from "./DogPicture";
 
 const botName = "Farm-Villa";
 
 const config = {
-  initialMessages: [createChatBotMessage(`Hi! I'm ${botName}`)],
+  initialMessages: [createChatBotMessage(`Hi! I'm ${botName} Agent, How can i help you!`)],
 
   botName: botName,
   widgets: [
     {
       widgetName: "dogPicture",
       widgetFunc: (props) => <DogPicture {...props} />,
+    },
+    {
+      widgetName: "laptopPicture",
+      widgetFunc: (props) => <LaptopPicture {...props} />,
     },
   ],
   state: {

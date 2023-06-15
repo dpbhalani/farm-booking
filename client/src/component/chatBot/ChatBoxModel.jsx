@@ -1,16 +1,18 @@
+import React from "react";
 import { Button, Modal, ModalContent, ModalBody } from "@chakra-ui/react";
-import { ChatIcon } from "@chakra-ui/icons";
+import { ChatIcon, CloseIcon } from "@chakra-ui/icons";
 import App from "./chatBot";
 import { useDisclosure } from "@chakra-ui/react";
 
 const ChatBot = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <div
         style={{
           position: "fixed",
-          top: "85%",
+          top: "87%",
           left: "92%",
           zIndex: 250,
         }}
@@ -18,18 +20,27 @@ const ChatBot = () => {
         <Button
           style={{
             backgroundColor: "var(--chakra-colors-gray-400)",
-            width: "100px",
-            height: "100px",
+            width: "80px",
+            height: "80px",
             borderRadius: "100px",
           }}
           onClick={onOpen}
         >
-          <ChatIcon
-            style={{
-              width: "40px",
-              height: "40px",
-            }}
-          />
+          {isOpen ? (
+            <CloseIcon
+              style={{
+                width: "30px",
+                height: "30px",
+              }}
+            />
+          ) : (
+            <ChatIcon
+              style={{
+                width: "40px",
+                height: "40px",
+              }}
+            />
+          )}
         </Button>
       </div>
 
@@ -39,7 +50,7 @@ const ChatBot = () => {
             style={{
               width: "fitContent",
               position: "fixed",
-              top: "30%",
+              top: "33%",
               left: "82%",
               display: "flex",
               justifyContent: "center",

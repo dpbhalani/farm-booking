@@ -9,6 +9,9 @@ const MessageParser = ({ children, actions }) => {
     if (message.includes("dog")) {
       actions.handleDog();
     }
+    if (message.includes("laptop")) {
+      actions.handleLaptop();
+    }
   };
 
   return (

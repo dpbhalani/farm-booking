@@ -17,6 +17,7 @@ import ProductDetail from "./component/productDetail/productDetail";
 import SiteDetailBar from "./component/siteDetail/siteDetailViewer";
 import FarmAddForm from "./component/admin/adminForm/farmAdd";
 import ChatBot from "./component/chatBot/ChatBoxModel";
+import ChatDrawer from "./component/chatBot/chatDrawer";
 
 // import FarmView from "./component/farm-ui/farmview";
 
@@ -26,6 +27,7 @@ function App() {
     <>
       <Navbar />
       <ChatBot />
+      <ChatDrawer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
