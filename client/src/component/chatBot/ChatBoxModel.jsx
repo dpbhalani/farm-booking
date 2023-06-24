@@ -12,8 +12,8 @@ const ChatBot = () => {
       <div
         style={{
           position: "fixed",
-          top: "87%",
-          left: "92%",
+          bottom: "0%",
+          right: "0%",
           zIndex: 250,
         }}
       >

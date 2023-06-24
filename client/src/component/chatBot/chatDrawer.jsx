@@ -7,6 +7,7 @@ import {
   DrawerCloseButton,
   Button,
 } from "@chakra-ui/react";
+import { ChatIcon, CloseIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/react";
 import App from "./chatBot";
 
@@ -17,7 +18,7 @@ const ChatDrawer = () => {
   return (
     <>
       <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
-        Open
+        {isOpen ? <CloseIcon /> : <ChatIcon />}
       </Button>
 
       <Drawer
