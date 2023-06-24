@@ -50,8 +50,8 @@ const ChatBot = () => {
             style={{
               width: "fitContent",
               position: "fixed",
-              top: "33%",
-              left: "82%",
+              right: "0%",
+              bottom: "9%",
               display: "flex",
               justifyContent: "center",
               textAlign: "center",
